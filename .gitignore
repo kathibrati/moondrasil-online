@@ -1,0 +1,28 @@
+.gradle-temp/
+**/build/
+out/
+# IntelliJ
+.idea/
+*.iml
+
+# Gradle
+.gradle/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Godot
+client/godot/.godot/
+
+# Node
+node_modules/
+dist/
+
+# Env
+.env
+.env.*

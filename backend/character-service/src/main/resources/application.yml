@@ -1,0 +1,6 @@
+quarkus:
+  application:
+    name: character-service
+  http:
+    port: 8082
+    test-port: 0

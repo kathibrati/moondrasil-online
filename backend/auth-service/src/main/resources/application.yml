@@ -1,0 +1,6 @@
+quarkus:
+  application:
+    name: auth-service
+  http:
+    port: 8081
+    test-port: 0
