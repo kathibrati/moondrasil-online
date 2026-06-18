@@ -4,15 +4,11 @@ plugins {
     application
 }
 
-application {
-    mainClass.set("io.ktor.server.netty.EngineMain")
-}
-
 dependencies {
-    implementation("io.ktor:ktor-server-core")
-    implementation("io.ktor:ktor-server-netty")
-    implementation("io.ktor:ktor-server-call-logging")
-    implementation("ch.qos.logback:logback-classic:1.5.18")
+    implementation("io.ktor:ktor-server-core-jvm:3.0.3")
+    implementation("io.ktor:ktor-server-netty-jvm:3.0.3")
+    implementation("io.ktor:ktor-server-websockets-jvm:3.0.3")
+    implementation("ch.qos.logback:logback-classic:1.5.34")
 
     testImplementation("io.ktor:ktor-server-test-host")
     testImplementation(kotlin("test"))
@@ -22,6 +18,10 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+}
+
+application {
+    mainClass.set("com.moondrasil.gateway.ApplicationKt")
 }
 
 kotlin {
