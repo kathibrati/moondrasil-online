@@ -23,3 +23,7 @@ text = "Connect to Gateway"
 [node name="StatusLabel" type="Label" parent="VBoxContainer" unique_id=1551188532]
 layout_mode = 2
 text = "Disconnected"
+
+[node name="PingButton" type="Button" parent="VBoxContainer" unique_id=1902620404]
+layout_mode = 2
+text = "Send Ping"

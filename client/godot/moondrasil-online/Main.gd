@@ -2,11 +2,13 @@ extends Control
 
 @onready var connect_button = $VBoxContainer/ConnectButton
 @onready var status_label = $VBoxContainer/StatusLabel
+@onready var ping_button = $VBoxContainer/PingButton
 
 var websocket := WebSocketPeer.new()
 
 func _ready():
 	connect_button.pressed.connect(_on_connect_pressed)
+	ping_button.pressed.connect(_on_ping_pressed)
 
 func _process(_delta):
 	websocket.poll()
@@ -28,3 +30,12 @@ func _on_connect_pressed():
 		status_label.text = "Connecting..."
 	else:
 		status_label.text = "Connection failed"
+		
+func _on_ping_pressed():
+	var payload = {
+		"type": "PING"
+	}
+
+	websocket.send_text(
+		JSON.stringify(payload)
+	)

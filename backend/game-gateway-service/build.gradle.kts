@@ -9,6 +9,7 @@ dependencies {
     implementation("io.ktor:ktor-server-netty-jvm:3.0.3")
     implementation("io.ktor:ktor-server-websockets-jvm:3.0.3")
     implementation("ch.qos.logback:logback-classic:1.5.34")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.18.2")
 
     testImplementation("io.ktor:ktor-server-test-host")
     testImplementation(kotlin("test"))

@@ -1,6 +1,9 @@
 package com.moondrasil.gateway
 
+import com.moondrasil.gateway.domain.message.PingMessage
+import com.moondrasil.gateway.domain.message.PongMessage
 import com.moondrasil.gateway.interfaces.rest.healthRoutes
+import com.moondrasil.gateway.interfaces.serialization.JsonMapper
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 import io.ktor.server.engine.embeddedServer
@@ -41,7 +44,19 @@ fun Application.module() {
             for (frame in incoming) {
                 if (frame is Frame.Text) {
                     val receivedText = frame.readText()
-                    send("""{"type":"ECHO","message":"$receivedText"}""")
+                    val ping = JsonMapper.mapper.readValue(
+                        receivedText,
+                        PingMessage::class.java
+                    )
+
+                    if (ping.type == "PING") {
+
+                        send(
+                            JsonMapper.mapper.writeValueAsString(
+                                PongMessage()
+                            )
+                        )
+                    }
                 }
             }
         }
