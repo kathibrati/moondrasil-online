@@ -1,9 +1,7 @@
 package com.moondrasil.gateway
 
-import com.moondrasil.gateway.domain.message.PingMessage
-import com.moondrasil.gateway.domain.message.PongMessage
 import com.moondrasil.gateway.interfaces.rest.healthRoutes
-import com.moondrasil.gateway.interfaces.serialization.JsonMapper
+import com.moondrasil.gateway.interfaces.websocket.gameWebSocketRoutes
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 import io.ktor.server.engine.embeddedServer
@@ -12,10 +10,6 @@ import io.ktor.server.routing.routing
 import io.ktor.server.websocket.WebSockets
 import io.ktor.server.websocket.pingPeriod
 import io.ktor.server.websocket.timeout
-import io.ktor.server.websocket.webSocket
-import io.ktor.websocket.Frame
-import io.ktor.websocket.readText
-import io.ktor.websocket.send
 import kotlin.time.Duration.Companion.seconds
 
 fun main() {
@@ -37,28 +31,6 @@ fun Application.module() {
 
     routing {
         healthRoutes()
-
-        webSocket("/ws") {
-            send("""{"type":"CONNECTED","message":"Welcome to Moondrasil"}""")
-
-            for (frame in incoming) {
-                if (frame is Frame.Text) {
-                    val receivedText = frame.readText()
-                    val ping = JsonMapper.mapper.readValue(
-                        receivedText,
-                        PingMessage::class.java
-                    )
-
-                    if (ping.type == "PING") {
-
-                        send(
-                            JsonMapper.mapper.writeValueAsString(
-                                PongMessage()
-                            )
-                        )
-                    }
-                }
-            }
-        }
+        gameWebSocketRoutes()
     }
 }

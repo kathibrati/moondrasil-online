@@ -27,3 +27,11 @@ text = "Disconnected"
 [node name="PingButton" type="Button" parent="VBoxContainer" unique_id=1902620404]
 layout_mode = 2
 text = "Send Ping"
+
+[node name="LoginButton" type="Button" parent="VBoxContainer" unique_id=223255483]
+layout_mode = 2
+text = "Login"
+
+[node name="GetCharactersButton" type="Button" parent="VBoxContainer" unique_id=994015945]
+layout_mode = 2
+text = "Get Characters"
