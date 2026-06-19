@@ -46,6 +46,17 @@ Requests the character list.
 }
 ```
 
+### SELECT_CHARACTER
+
+Selects a character and requests entry into the world.
+
+```json
+{
+  "type": "SELECT_CHARACTER",
+  "characterId": "1"
+}
+```
+
 ## Server to Client Messages
 
 ### CONNECTED
@@ -100,22 +111,49 @@ Returns the available characters.
   "type": "CHARACTER_LIST",
   "characters": [
     {
+      "id": "1",
       "name": "Basti"
     },
     {
+      "id": "2",
       "name": "Kathleen"
     }
   ]
 }
 ```
 
+### ENTER_WORLD
+
+Sent after a known character is selected.
+
+```json
+{
+  "type": "ENTER_WORLD",
+  "characterId": "1",
+  "characterName": "Basti",
+  "x": 100,
+  "y": 200
+}
+```
+
 ### ERROR
 
-Sent when the gateway receives an unsupported message type.
+Sent when the gateway cannot process a message.
+
+Unsupported message type:
 
 ```json
 {
   "type": "ERROR",
   "reason": "Unknown message type"
+}
+```
+
+Unknown character:
+
+```json
+{
+  "type": "ERROR",
+  "errorCode": "CHARACTER_NOT_FOUND"
 }
 ```

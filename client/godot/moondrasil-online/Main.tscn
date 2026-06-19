@@ -35,3 +35,7 @@ text = "Login"
 [node name="GetCharactersButton" type="Button" parent="VBoxContainer" unique_id=994015945]
 layout_mode = 2
 text = "Get Characters"
+
+[node name="SelectBastiButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Select Basti"

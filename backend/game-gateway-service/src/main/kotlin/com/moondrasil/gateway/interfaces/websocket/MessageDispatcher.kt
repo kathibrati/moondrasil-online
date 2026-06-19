@@ -5,6 +5,7 @@ import com.moondrasil.gateway.application.GatewayMessageHandler
 import com.moondrasil.gateway.domain.message.ErrorMessage
 import com.moondrasil.gateway.domain.message.GetCharactersMessage
 import com.moondrasil.gateway.domain.message.LoginMessage
+import com.moondrasil.gateway.domain.message.SelectCharacterMessage
 import com.moondrasil.gateway.interfaces.serialization.JsonMapper
 
 object MessageDispatcher {
@@ -20,6 +21,9 @@ object MessageDispatcher {
             )
             "GET_CHARACTERS" -> GatewayMessageHandler.handleGetCharacters(
                 JsonMapper.mapper.treeToValue(payload, GetCharactersMessage::class.java),
+            )
+            "SELECT_CHARACTER" -> GatewayMessageHandler.handleSelectCharacter(
+                JsonMapper.mapper.treeToValue(payload, SelectCharacterMessage::class.java),
             )
             else -> ErrorMessage()
         }

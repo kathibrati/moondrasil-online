@@ -5,6 +5,7 @@ extends Control
 @onready var ping_button = $VBoxContainer/PingButton
 @onready var login_button = $VBoxContainer/LoginButton
 @onready var get_characters_button = $VBoxContainer/GetCharactersButton
+@onready var select_basti_button = $VBoxContainer/SelectBastiButton
 
 var websocket := WebSocketPeer.new()
 
@@ -13,6 +14,7 @@ func _ready():
 	ping_button.pressed.connect(_on_ping_pressed)
 	login_button.pressed.connect(_on_login_pressed)
 	get_characters_button.pressed.connect(_on_get_characters_pressed)
+	select_basti_button.pressed.connect(_on_select_basti_pressed)
 
 func _process(_delta):
 	websocket.poll()
@@ -55,6 +57,12 @@ func _on_get_characters_pressed():
 		"type": "GET_CHARACTERS"
 	})
 
+func _on_select_basti_pressed():
+	_send_message({
+		"type": "SELECT_CHARACTER",
+		"characterId": "1"
+	})
+
 func _send_message(payload: Dictionary):
 	if websocket.get_ready_state() != WebSocketPeer.STATE_OPEN:
 		status_label.text = "Connect to the gateway first"
@@ -69,7 +77,9 @@ func _display_message(message: String):
 		var character_names: Array[String] = []
 
 		for character in payload.get("characters", []):
-			character_names.append(str(character.get("name", "")))
+			var character_id = str(character.get("id", ""))
+			var character_name = str(character.get("name", ""))
+			character_names.append("%s: %s" % [character_id, character_name])
 
 		status_label.text = "Characters: " + ", ".join(character_names)
 		return

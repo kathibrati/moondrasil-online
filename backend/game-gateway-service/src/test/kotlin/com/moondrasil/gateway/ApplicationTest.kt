@@ -48,7 +48,19 @@ class ApplicationTest {
 
             send(Frame.Text("""{"type":"GET_CHARACTERS"}"""))
             assertEquals(
-                """{"type":"CHARACTER_LIST","characters":[{"name":"Basti"},{"name":"Kathleen"}]}""",
+                """{"type":"CHARACTER_LIST","characters":[{"id":"1","name":"Basti"},{"id":"2","name":"Kathleen"}]}""",
+                receiveText(),
+            )
+
+            send(Frame.Text("""{"type":"SELECT_CHARACTER","characterId":"1"}"""))
+            assertEquals(
+                """{"type":"ENTER_WORLD","characterId":"1","characterName":"Basti","x":100,"y":200}""",
+                receiveText(),
+            )
+
+            send(Frame.Text("""{"type":"SELECT_CHARACTER","characterId":"2"}"""))
+            assertEquals(
+                """{"type":"ENTER_WORLD","characterId":"2","characterName":"Kathleen","x":120,"y":200}""",
                 receiveText(),
             )
         }
@@ -76,6 +88,12 @@ class ApplicationTest {
             send(Frame.Text("""{"type":"SOMETHING_ELSE"}"""))
             assertEquals(
                 """{"type":"ERROR","reason":"Unknown message type"}""",
+                receiveText(),
+            )
+
+            send(Frame.Text("""{"type":"SELECT_CHARACTER","characterId":"999"}"""))
+            assertEquals(
+                """{"type":"ERROR","errorCode":"CHARACTER_NOT_FOUND"}""",
                 receiveText(),
             )
         }
