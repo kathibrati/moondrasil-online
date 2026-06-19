@@ -73,7 +73,11 @@ func _send_message(payload: Dictionary):
 func _display_message(message: String):
 	var payload = JSON.parse_string(message)
 
-	if typeof(payload) == TYPE_DICTIONARY and payload.get("type") == "CHARACTER_LIST":
+	if typeof(payload) != TYPE_DICTIONARY:
+		status_label.text = "Invalid message from gateway"
+		return
+
+	if payload.get("type") == "CHARACTER_LIST":
 		var character_names: Array[String] = []
 
 		for character in payload.get("characters", []):
@@ -82,6 +86,18 @@ func _display_message(message: String):
 			character_names.append("%s: %s" % [character_id, character_name])
 
 		status_label.text = "Characters: " + ", ".join(character_names)
+		return
+
+	if payload.get("type") == "ENTER_WORLD":
+		var world_data = {
+			"characterId": str(payload.get("characterId", "")),
+			"characterName": str(payload.get("characterName", "")),
+			"x": float(payload.get("x", 0)),
+			"y": float(payload.get("y", 0))
+		}
+
+		get_tree().root.set_meta("enter_world", world_data)
+		get_tree().change_scene_to_file("res://scenes/World.tscn")
 		return
 
 	status_label.text = message

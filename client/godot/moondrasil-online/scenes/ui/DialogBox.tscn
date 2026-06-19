@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/DialogBox.gd" id="1_dialog"]
+
+[node name="DialogBox" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_dialog")
+
+[node name="Interface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HintLabel" type="Label" parent="Interface"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -120.0
+offset_right = 90.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Press E to talk"
+horizontal_alignment = 1
+
+[node name="DialogPanel" type="PanelContainer" parent="Interface"]
+layout_mode = 1
+anchors_preset = 12
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 120.0
+offset_top = -180.0
+offset_right = -120.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Content" type="VBoxContainer" parent="Interface/DialogPanel"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="NpcName" type="Label" parent="Interface/DialogPanel/Content"]
+layout_mode = 2
+text = "NPC"
+
+[node name="DialogText" type="Label" parent="Interface/DialogPanel/Content"]
+layout_mode = 2
+text = "Dialog text"
+autowrap_mode = 2
