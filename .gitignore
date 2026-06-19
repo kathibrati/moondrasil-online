@@ -18,6 +18,7 @@ Thumbs.db
 
 # Godot
 client/godot/.godot/
+client/godot/moondrasil-online/Main.gd.uid
 
 # Node
 node_modules/
