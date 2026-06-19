@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/PlayerPanel.gd" id="1_player_panel"]
+
+[node name="PlayerPanel" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_player_panel")
+
+[node name="Interface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="Interface"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 240.0
+offset_bottom = 170.0
+
+[node name="Content" type="VBoxContainer" parent="Interface/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="CharacterName" type="Label" parent="Interface/Panel/Content"]
+layout_mode = 2
+text = "Character: Unknown"
+
+[node name="Gold" type="Label" parent="Interface/Panel/Content"]
+layout_mode = 2
+text = "Gold: 0"
+
+[node name="Experience" type="Label" parent="Interface/Panel/Content"]
+layout_mode = 2
+text = "EXP: 0"

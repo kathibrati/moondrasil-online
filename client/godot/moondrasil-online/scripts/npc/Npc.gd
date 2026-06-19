@@ -5,6 +5,7 @@ signal interaction_unavailable(npc)
 
 @export var npc_name: String = "NPC"
 @export_multiline var interaction_text: String = ""
+var quest_offer: QuestData = null
 
 func _ready():
 	set_npc_name(npc_name)
@@ -17,6 +18,9 @@ func set_npc_name(name: String):
 
 func set_interaction_text(text: String):
 	interaction_text = text
+
+func set_quest_offer(quest: QuestData):
+	quest_offer = quest
 
 func _on_interaction_area_body_entered(body: Node2D):
 	if body.is_in_group("player"):

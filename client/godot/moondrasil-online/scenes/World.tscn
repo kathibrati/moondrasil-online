@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/World.gd" id="1_world"]
 [ext_resource type="PackedScene" path="res://scenes/ui/DialogBox.tscn" id="2_dialog"]
+[ext_resource type="PackedScene" path="res://scenes/ui/QuestTracker.tscn" id="3_tracker"]
+[ext_resource type="PackedScene" path="res://scenes/ui/PlayerPanel.tscn" id="4_player_panel"]
+[ext_resource type="PackedScene" path="res://scenes/ui/InventoryPanel.tscn" id="5_inventory_panel"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_world")
@@ -25,3 +28,9 @@ text = "Moondrasil World"
 [node name="Npcs" type="Node2D" parent="."]
 
 [node name="DialogBox" parent="." instance=ExtResource("2_dialog")]
+
+[node name="QuestTracker" parent="." instance=ExtResource("3_tracker")]
+
+[node name="PlayerPanel" parent="." instance=ExtResource("4_player_panel")]
+
+[node name="InventoryPanel" parent="." instance=ExtResource("5_inventory_panel")]

@@ -55,3 +55,7 @@ text = "NPC"
 layout_mode = 2
 text = "Dialog text"
 autowrap_mode = 2
+
+[node name="ActionButton" type="Button" parent="Interface/DialogPanel/Content"]
+layout_mode = 2
+text = "Accept"
