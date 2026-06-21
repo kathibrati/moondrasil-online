@@ -61,6 +61,10 @@ func _spawn_monster(rule: SpawnRule) -> bool:
 	)
 
 	monster_container.add_child(monster)
+	var monster_ai := monster.get_node_or_null("MonsterAI") as MonsterAI
+	if monster_ai != null:
+		monster_ai.configure(monster.global_position, rule.spawn_area)
+
 	alive_by_spawn[rule.spawn_id].append(monster)
 	monster_spawned.emit(monster)
 	return true

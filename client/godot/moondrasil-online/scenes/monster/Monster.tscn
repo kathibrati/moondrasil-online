@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/monster/Monster.gd" id="1_monster"]
+[ext_resource type="Script" path="res://scripts/monster/MonsterAI.gd" id="2_monster_ai"]
 
 [node name="Monster" type="Node2D"]
 script = ExtResource("1_monster")
+
+[node name="MonsterAI" type="Node" parent="."]
+script = ExtResource("2_monster_ai")
 
 [node name="Visuals" type="Node2D" parent="."]
 
