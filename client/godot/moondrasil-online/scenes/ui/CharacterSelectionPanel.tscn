@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/CharacterSelectionPanel.gd" id="1_selection"]
+
+[node name="CharacterSelectionPanel" type="PanelContainer"]
+visible = false
+custom_minimum_size = Vector2(320, 0)
+script = ExtResource("1_selection")
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Content"]
+layout_mode = 2
+text = "Select Character"
+horizontal_alignment = 1
+
+[node name="CharacterList" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="EmptyLabel" type="Label" parent="Content"]
+layout_mode = 2
+text = "No characters available."
+horizontal_alignment = 1

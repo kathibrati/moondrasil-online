@@ -9,6 +9,17 @@ var character_name: String = "Unknown"
 var experience: int = 0
 var gold: int = 0
 var inventory: Array[ItemData] = []
+var attack_interval_seconds: float = 1.2
+var last_attack_time_seconds: float = -INF
+
+func can_attack(current_time_seconds: float) -> bool:
+	return (
+		current_time_seconds - last_attack_time_seconds
+		>= attack_interval_seconds
+	)
+
+func record_attack(current_time_seconds: float):
+	last_attack_time_seconds = current_time_seconds
 
 func add_experience(amount: int):
 	experience += amount
