@@ -13,7 +13,7 @@ func _ready():
 	hide_hint()
 	close_dialog()
 
-func show_hint(text: String = "Press E to talk"):
+func show_hint(text: String = "Interact to talk"):
 	hint_label.text = text
 	hint_label.visible = true
 

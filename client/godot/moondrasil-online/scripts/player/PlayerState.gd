@@ -18,6 +18,11 @@ func add_gold(amount: int):
 	gold += amount
 	stats_changed.emit()
 
+func grant_combat_rewards(experience_reward: int, gold_reward: int):
+	experience += experience_reward
+	gold += gold_reward
+	stats_changed.emit()
+
 func add_item(item: ItemData):
 	inventory.append(item)
 	inventory_changed.emit()

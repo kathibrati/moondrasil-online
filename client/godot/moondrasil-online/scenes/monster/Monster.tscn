@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/monster/Monster.gd" id="1_monster"]
+
+[node name="Monster" type="Node2D"]
+script = ExtResource("1_monster")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Body" type="ColorRect" parent="Visuals"]
+offset_left = -24.0
+offset_top = -18.0
+offset_right = 24.0
+offset_bottom = 24.0
+mouse_filter = 2
+color = Color(0.55, 0.45, 0.9, 1)
+
+[node name="Eyes" type="Label" parent="Visuals"]
+offset_left = -16.0
+offset_top = -12.0
+offset_right = 16.0
+offset_bottom = 12.0
+text = "o  o"
+horizontal_alignment = 1
+
+[node name="TargetIndicator" type="Label" parent="."]
+visible = false
+offset_left = -30.0
+offset_top = -88.0
+offset_right = 30.0
+offset_bottom = -64.0
+theme_override_colors/font_color = Color(1, 0.85, 0.15, 1)
+text = "TARGET"
+horizontal_alignment = 1
+
+[node name="Nameplate" type="Node2D" parent="."]
+
+[node name="MonsterName" type="Label" parent="Nameplate"]
+offset_left = -70.0
+offset_top = -64.0
+offset_right = 70.0
+offset_bottom = -42.0
+text = "Monster"
+horizontal_alignment = 1
+
+[node name="Health" type="Label" parent="Nameplate"]
+offset_left = -70.0
+offset_top = -44.0
+offset_right = 70.0
+offset_bottom = -22.0
+text = "HP: 1 / 1"
+horizontal_alignment = 1

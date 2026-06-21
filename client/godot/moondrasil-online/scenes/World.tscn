@@ -1,36 +1,82 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene format=3 uid="uid://dqp6ospndqoc"]
 
-[ext_resource type="Script" path="res://scripts/World.gd" id="1_world"]
+[ext_resource type="Script" uid="uid://7byafcc5s3bx" path="res://scripts/World.gd" id="1_world"]
 [ext_resource type="PackedScene" path="res://scenes/ui/DialogBox.tscn" id="2_dialog"]
 [ext_resource type="PackedScene" path="res://scenes/ui/QuestTracker.tscn" id="3_tracker"]
 [ext_resource type="PackedScene" path="res://scenes/ui/PlayerPanel.tscn" id="4_player_panel"]
 [ext_resource type="PackedScene" path="res://scenes/ui/InventoryPanel.tscn" id="5_inventory_panel"]
+[ext_resource type="Script" uid="uid://vp5q3aw7lms3" path="res://scripts/input/GameplayInput.gd" id="6_gameplay_input"]
+[ext_resource type="Script" uid="uid://ycbhyhulsxx5" path="res://scripts/spawn/SpawnManager.gd" id="7_spawn_manager"]
+[ext_resource type="Script" path="res://scripts/targeting/TargetingController.gd" id="8_targeting"]
+[ext_resource type="Script" path="res://scripts/combat/CombatController.gd" id="9_combat"]
+[ext_resource type="Script" path="res://scripts/quest/QuestManager.gd" id="10_quests"]
+[ext_resource type="Script" path="res://scripts/dialog/DialogController.gd" id="11_dialogs"]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" unique_id=948451518]
 script = ExtResource("1_world")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1316030073]
+show_behind_parent = true
 offset_right = 1152.0
 offset_bottom = 648.0
 mouse_filter = 2
 color = Color(0.08, 0.12, 0.18, 1)
-show_behind_parent = true
 
-[node name="WorldTitle" type="Label" parent="."]
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 220.0
-offset_bottom = 42.0
+[node name="WorldTitle" type="Label" parent="." unique_id=1969279521]
+offset_left = 481.0
+offset_top = 2.0
+offset_right = 685.0
+offset_bottom = 28.0
 text = "Moondrasil World"
 
-[node name="Players" type="Node2D" parent="."]
+[node name="GameplayInput" type="Node" parent="." unique_id=1273841161]
+process_mode = 3
+script = ExtResource("6_gameplay_input")
 
-[node name="Npcs" type="Node2D" parent="."]
+[node name="Interface" type="CanvasLayer" parent="." unique_id=1594997775]
+layer = 20
 
-[node name="DialogBox" parent="." instance=ExtResource("2_dialog")]
+[node name="CombatInstructions" type="Label" parent="Interface" unique_id=960640437]
+offset_left = 13.0
+offset_top = 7.0
+offset_right = 377.0
+offset_bottom = 33.0
+text = "TAB: target | 1: attack | Right-click: auto attack"
 
-[node name="QuestTracker" parent="." instance=ExtResource("3_tracker")]
+[node name="TargetStatus" type="Label" parent="Interface" unique_id=504363821]
+offset_left = 15.0
+offset_top = 32.0
+offset_right = 479.0
+offset_bottom = 58.0
+text = "Waiting for target_next input..."
 
-[node name="PlayerPanel" parent="." instance=ExtResource("4_player_panel")]
+[node name="Players" type="Node2D" parent="." unique_id=468790099]
 
-[node name="InventoryPanel" parent="." instance=ExtResource("5_inventory_panel")]
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="Npcs" type="Node2D" parent="." unique_id=1171807304]
+
+[node name="Monsters" type="Node2D" parent="." unique_id=1128172304]
+
+[node name="SpawnManager" type="Node" parent="." unique_id=514467228]
+script = ExtResource("7_spawn_manager")
+
+[node name="TargetingController" type="Node" parent="."]
+script = ExtResource("8_targeting")
+
+[node name="CombatController" type="Node" parent="."]
+script = ExtResource("9_combat")
+
+[node name="QuestManager" type="Node" parent="."]
+script = ExtResource("10_quests")
+
+[node name="DialogController" type="Node" parent="."]
+script = ExtResource("11_dialogs")
+
+[node name="DialogBox" parent="." unique_id=306898463 instance=ExtResource("2_dialog")]
+
+[node name="QuestTracker" parent="." unique_id=1689839931 instance=ExtResource("3_tracker")]
+
+[node name="PlayerPanel" parent="." unique_id=1283239026 instance=ExtResource("4_player_panel")]
+
+[node name="InventoryPanel" parent="." unique_id=212726074 instance=ExtResource("5_inventory_panel")]
